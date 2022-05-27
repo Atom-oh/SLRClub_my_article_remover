@@ -35,7 +35,7 @@ for page_num in range(1, last_page+1):
         table_cols = row.find_all('td')
         if len(table_cols)==3 and table_cols[1].string and '장터' not in table_cols[1].string:
             query_params=parse_qs(urlparse(table_cols[0].find("a")["href"]).query)
-            my_articles.append( {'id':query_params['id'][0], 'no': query_params['no'][0], 'url': table_cols[0].find("a")["href"]})
+            my_articles.append( {'id':query_params['id'][0], 'no': query_params['no'][0]})
 print(my_articles)
 
 # delete all articles
@@ -47,4 +47,5 @@ for article in my_articles:
     
     print(res.status_code)
     print(res.text)
+    # 스르륵 서버 제약사항 삭제는 10초 이후에 
     time.sleep(11)
